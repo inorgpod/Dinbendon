@@ -1,0 +1,32 @@
+<h1>使用者註冊</h1>
+
+
+<%= form_for(@user , url: '/sign_up',method: 'post') do |f| %>
+<% if @user.errors.any?%>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+<div>
+    <%= f.label :email%>
+    <%= f.text_field :email%>
+</div>     
+    <%= f.label :password, "密碼" %>  
+    <%= f.password_field :password %>
+<div>       
+    <%= f.label :password_confirmation, "確認密碼" %>
+    <%= f.password_field :password_confirmation  %>
+</div>        
+    
+    <%= f.submit "註冊" %>
+    
+    <% end %>
+
+
+
+
+
+

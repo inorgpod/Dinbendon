@@ -1,0 +1,35 @@
+<%# <h1>訂便當系統</h1>
+<form action="login" method="post">
+<div>
+帳號<input type="email" placeholder="請輸入email" name="">
+</div>
+密碼<input type="password" placeholder="請輸入密碼" name="">
+<input type="submit" value="登入">
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTRO Refunder|</title>
+</head>
+<body>
+  <h1>使用者登入</h1>
+
+  <%= form_for(@user, url: login_path, method: "post") do |f| %>
+    <div>
+      <%= f.label :email, '信箱' %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, '密碼' %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.submit '登入' %>
+    </div>
+  
+  <% end %>
+
+
+
