@@ -6,7 +6,13 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
-require("channels")
+// require("channels")
+// app/javascript/channels/index.js 預設路徑
+
+require("styles")
+// require("scripts")
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

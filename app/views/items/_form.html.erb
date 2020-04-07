@@ -10,6 +10,19 @@
   <% end %>
 
   <div>
+
+    <%= f.label :cover ,'圖片' %>
+    <%= f.file_field :cover %>
+  
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.collection_select :category_id , Category.all , :id , :name %>
+  </div>
+
+
+  <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
@@ -30,5 +43,5 @@
   </div>
 
   <%= f.submit %> 
-  shared
+
 <% end %>

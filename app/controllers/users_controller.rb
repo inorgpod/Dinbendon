@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  skip_before_action :check_login , except: [:logout]
 
   def login
-   @user = User.new
+  @user = User.new
   end
 
   def sign_up

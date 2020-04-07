@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def create 
-    
+    @item = Item.new(item_params)
     if @item.save  #使用@實體變數因為要跨到別的view或model去使用
       redirect_to items_path, notice: '成功新增餐點！'
     else
@@ -55,6 +55,8 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, 
                                 :description,
                                 :price,
-                                :spec)
+                                :category_id,
+                                :spec,
+                                :cover)
   end
 end
