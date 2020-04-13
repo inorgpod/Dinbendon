@@ -6,5 +6,5 @@ class User < ApplicationRecord
     # attr_accessor :password_confirm
 
     has_many :histories 
-    has_many :events , :through :histories
+    has_many :events , through: :histories
 end
