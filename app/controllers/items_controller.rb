@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   
   
   def index 
-    @items = Item.all 
+    @items = Item.available
   end
 
 
@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   
   
   def edit 
+  
   end
   
   def update 
@@ -41,6 +42,8 @@ class ItemsController < ApplicationController
   
   def destroy
     @item.destroy
+    # @item.update(deleted_at: Time.now) 
+    
     redirect_to items_path , notice: '成功刪除餐點'
   end
   
@@ -48,7 +51,8 @@ class ItemsController < ApplicationController
 
   private 
   def find_item
-    @item = Item.find(params[:id])
+    #@item = Item.find(params[:id])
+    @item = Item.find_by(id: params[:id], deleted_at: nil)
   end
 
   def item_params

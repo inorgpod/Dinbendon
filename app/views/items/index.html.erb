@@ -1,24 +1,49 @@
+<!-- 
 <h1>餐點列表</h1>
 
 <%= link_to "新增", new_item_path %>
 
-<ul>
+<div class="row">
 <% @items.each do |item| %>
-<li>
+  <div class="col-4">
+  <div class = "card">
   <%= image_tag item.cover.variant(resize_to_limit: [200, 200]) if item.cover.attached? %>  
-  <%= link_to item.name , item_path(item.id) %>
-  
-  <%= link_to '編輯' , edit_item_path(item.id)%>
-  <%= link_to '刪除' , 
-      item_path(item.id) , 
-      method: 'delete' ,
-      data: {confirm:'r u sure ?'}%>
+  </div>
+  <div class = "card-body">
+      <h5 class="card-title">
+        <%= link_to item.name , item_path(item.id) %>
+      </h5>
+      <%= link_to '編輯' , edit_item_path(item.id),class:"btn btn-primary"%>
+      <%= link_to '刪除' , 
+            item_path(item.id) , 
+            method: 'delete' ,
+            data: {confirm:'r u sure ?'},
+            class:"btn btn-success"%>
 
-      
-      
-</li>
+        </div>  
+      </div>
+    </div>
+  <% end %>
 
-<% end %>
+</div> -->
 
+<h1>餐點列表</h1>
 
-</ul>
+<%= link_to "新增", new_item_path %>
+
+<div class="row">
+  <% @items.each do |item| %>
+    <div class="col-4 item">
+      <div class="card">
+        <%= image_tag item.cover.variant(resize_to_limit: [200, 200]),class: 'cover-image' if item.cover.attached? %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to item.name, item %>
+          </h5>
+          <%= link_to "編輯", edit_item_path(item), class: 'btn btn-primary' %>
+          <%= link_to "刪除", item, method: 'delete', data: {confirm: "是否確認刪除?"}, class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
