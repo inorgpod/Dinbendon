@@ -17,8 +17,7 @@ class Item < ApplicationRecord
   end
 
   def favorited_by(u)
-    u.items.include?(self)
-
+    u.items.include?(self) #用使用者的物品去查詢物品自己是否在陣列裡
   end
 end
 

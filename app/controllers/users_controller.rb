@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     # if user_params[:password] == user_params[:password_confirm]
       #新增使用者
       #strong parameters
-      # 因為沒有password_confirm的值所以需要建立一個或者在user.rb新增 attr_accessor :password_confirm來騙modal
+      # 因為沒有password_confirm的值所以需要建立一個或者在user.rb新增 attr_accessor :password_confirm來騙model
     @user = User.new(user_params)
 
     if @user.save

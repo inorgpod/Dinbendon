@@ -41,6 +41,10 @@ class Cart
     # return tmp
   end
 
+  def count
+    @items.count #給一個實體變數讓這個運算可以跨到其他的view使用
+  end
+
   def self.from_hash(hash = nil) #用類別方法 self.xxx
     if hash && hash["items"] #多家&& hash["items"] 是為了確保就算無回傳值也有作用
       # items = []

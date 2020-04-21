@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   
-  before_action :find_item , only: [:show , :edit , :update, :destroy]
+  before_action :find_item , only: [:show , :edit , :update, :destroy, :add_to_cart]
   
   
   def index 
@@ -25,6 +25,14 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def add_to_cart
+    cart = Cart.from_hash(session[:carty])
+    cart.add_item{@item.id}
+    session[:carty] = current_cart.to_hash #session只能存字串不能存物件
+
+    redirect_to root_path, notice: '已加到購物車'
   end
   
   

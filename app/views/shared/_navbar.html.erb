@@ -26,11 +26,17 @@
       </li>
 
       <% if current_user %>
-      <%# moin,<%= current_user.email%> 
+      <ul class="navbar-nav">
+      <a href="#" class="nav-link">moin,<%= current_user.email %></a>
+      <li>
+      <%= link_to "cart_path", class: 'nav-link'%>
+      購物車<i class= "fas fa-shopping-cart"></i>
+      <%=current_cart.count %>
+      
         <li class="nav-item">
           <%= link_to "我要開團", "#", class: 'nav-link' %>
         </li>
-      <% else %>
+        <% else %>
         <li class="nav-item">
           <a href="/sign_up" class="nav-link">註冊</a>
         </li>

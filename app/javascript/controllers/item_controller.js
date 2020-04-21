@@ -9,6 +9,7 @@
 
 import { Controller } from "stimulus"
 import ax from "axios"
+import Rx from "@rails/ujs"
 
 export default class extends Controller {
   static targets = ["icon"]
@@ -23,14 +24,26 @@ export default class extends Controller {
     ax.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken //暫時從網頁檢查器抓下這段使下面ax.post合法的Token
     let item_id = document.querySelector('#item_id').value;
 
+    Rx.ajax({
+      url: '/api/v1/items${item_id}/favorite',
+      type: 'POST',
+      success: resp => {
+        console.log(resp);
+      },
+        error: err => {
+        console.log(err)
+      }
+
+    })
+
     ax.post('/api/v1/items/${item_id}/favorite') 
-    .then(function(resp){
+    .then(resp => {
       if(resp.data.status ==="favorited"){
-        this.iconTarget.classList.remove('far')
-        this.iconTarget.classList.add('fas')
+        this.iconTarget.classList.remove('far');
+        this.iconTarget.classList.add('fas');
       }else{
-        this.iconTarget.classList.remove('fas')
-        this.iconTarget.classList.add('far')
+        this.iconTarget.classList.remove('fas');
+        this.iconTarget.classList.add('far');
       }
       // console.log(resp.data);
     })
