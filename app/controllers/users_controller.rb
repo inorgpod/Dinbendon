@@ -16,9 +16,10 @@ class UsersController < ApplicationController
   end
 
   def sign_in
-      user = User.find_by(email: user_params[:email] , password: user_params[:password])
+      user = User.find_by(email: user_params[:email] , 
+                          password: user_params[:password])
       if user 
-      session[:ccc9527] = user.email
+      session[:ccc9527] = user.id
       redirect_to root_path
     else
       redirect_to login_path
@@ -38,17 +39,23 @@ class UsersController < ApplicationController
       #成功
         # TODO: 密碼加密
       session[:ccc9527] = @user.email
-      redirect_to "/"
+      redirect_to root_path
     else
       #失敗
       #redirect_to "/sign_up"         
       render  :sign_up
       #render > erb的概念
+    end
   end
+  
     # redirect_to "/login"
     # else
     # redirect_to "/sign_up"
     # end
+    def logout
+      session[:ccc9527] = nil
+      redirect_to root_path
+    end
   end
 
 
@@ -57,5 +64,5 @@ class UsersController < ApplicationController
     def user_params 
       params.require(:user).permit(:email,:password,:password_confirmation)
     end
-  end
+
 

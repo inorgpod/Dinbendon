@@ -4,11 +4,13 @@ class ItemsController < ApplicationController
   
   
   def index 
-    @items = Item.available
+    @items = Item.all
   end
 
 
   def show 
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user) #使用IN的方法查資料 而不是用 n+1 Query的方法 EAGER LOADING
   end
 
 
@@ -27,7 +29,6 @@ class ItemsController < ApplicationController
   
   
   def edit 
-  
   end
   
   def update 
@@ -43,7 +44,6 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     # @item.update(deleted_at: Time.now) 
-    
     redirect_to items_path , notice: '成功刪除餐點'
   end
   
