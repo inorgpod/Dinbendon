@@ -3,11 +3,11 @@
 
 <%= form_for(@user , url: '/sign_up',method: 'post') do |f| %>
 <% if @user.errors.any?%>
-      <ul>
+    <ul>
         <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
         <% end %>
-      </ul>
+    </ul>
     <% end %>
 
 <div>

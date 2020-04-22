@@ -28,8 +28,9 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
-    cart = Cart.from_hash(session[:carty])
-    cart.add_item{@item.id}
+    #cart = Cart.from_hash(session[:carty])
+    #cart.add_item{@item.id}
+    current_cart.add_item(@item.id)
     session[:carty] = current_cart.to_hash #session只能存字串不能存物件
 
     redirect_to root_path, notice: '已加到購物車'

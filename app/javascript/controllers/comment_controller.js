@@ -6,7 +6,7 @@ export default class extends Controller{
 
   check (e) {
     if(this.contentTarget.value.length >= 2){
-    this.submitTarget.disabled = faule
+    this.submitTarget.disabled = false
     }else{
       this.submitTarget.disabled = true
     }
