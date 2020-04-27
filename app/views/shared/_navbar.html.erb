@@ -1,16 +1,50 @@
-<!-- <%= link_to '餐點列表' , items_path %> |
-<% if current_user %>
-<%= current_user %> |
-<%= link_to "登出", logout_path , method: "delete" %>
-<%= link_to '我要開團' , "#"%>
-<% else %>
-<a href= "/sign_up">註冊</a> |
-<a href= "/login">登入</a>
-<% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">訂便當</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<%=flash[:notice] %> -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<%= flash[:notice] %>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "餐點列表", items_path, class: 'nav-link' %>
+      </li>
+
+      <% if current_user %>
+        <li class="nav-item">
+          <%= link_to "我要開團", "#", class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a href="/sign_up" class="nav-link">註冊</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link">登入</a>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if current_user %>
+    <ul class="navbar-nav">
+      <li>
+        <%= link_to cart_path, class: 'nav-link' do %>
+          購物車 <i class="fas fa-shopping-cart"></i> 
+          <span id="items_count"><%= current_cart.items.count %></span>
+        <% end %>
+      </li>
+      <li>
+        <a href="#" class="nav-link">日安，<%= current_user.email %></a>
+      </li>
+      <li class="nav-item">
+        <%= link_to "登出", logout_path, method: 'delete', class: 'nav-link' %>
+      </li>
+    </ul>
+    <% end %>
+  </div>
+</nav>
+
+<!-- <%= flash[:notice] %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">訂便當</a>
@@ -31,6 +65,7 @@
       <li>
       <%= link_to "cart_path", class: 'nav-link'%>
       購物車<i class= "fas fa-shopping-cart"></i>
+      <span id="items_count"><%= current_cart.items.count %></span>
       <%= current_cart.count %>
       
         <li class="nav-item">
@@ -54,4 +89,4 @@
     </ul>
     <% end %>
   </div>
-</nav>
+</nav> -->

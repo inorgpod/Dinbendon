@@ -14,6 +14,7 @@
   <title>ASTRO HUNGER</title>
 </head>
 <body>
+  <%= javascript_pack_tag 'okok', 'data-turbolinks-track': 'reload' %>
   <h1>使用者登入</h1>
 
   <%= form_for(@user, url: login_path, method: "post") do |f| %>

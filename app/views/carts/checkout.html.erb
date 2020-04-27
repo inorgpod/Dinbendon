@@ -1,0 +1,58 @@
+  <%= content_for :head_js do %>
+  <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+  <% end %>
+
+<h1>結帳</h1>
+
+<%=render'cart'%>
+<%= form_for(@order) do |form|%>
+  <div>
+    <%= form.text_label :receiver %>
+    <%= form.text_field :receiver %>
+  </div>
+
+  <div>
+    <%= form.text_label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.text_label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <%= form.hidden_field :nonce %>
+
+  <div id="dropin-container"></div>
+
+  <%= form.submit id: 'submit-order' %>
+  
+
+<% end %>
+
+<script>
+  document.addEventListener("turbolinks:load",function(){
+    
+    let button = document.querySelector("#submit-order");
+    let hidden_field = document.querySelector("#order_nonce");
+    let form = document.querySelector("#new_order");
+
+    braintree.dropin.create({
+      authorization: '<%= @token %>',
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+
+      button.addEventListener('click', function (e) {
+        e.preventDefault(); //先停止網頁運作 抓下token
+
+        instance.requestPaymentMethod(function (err, payload) {
+          nonce_field.value = payload.nonce; 
+          //console.log(payload.nonce); //先印出看看結果
+          //alert.log(payload.nonce);//用alert看結果
+          form.submit(); //真正做出動作
+          // Submit payload.nonce to your server
+        });
+      });
+    });
+  });
+
+  </script>

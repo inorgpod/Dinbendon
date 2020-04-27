@@ -1,35 +1,9 @@
-<h1>購物車
+<h1>
+  購物車
   <%= link_to "清空購物車" , 'cart_path',method: 'delete', class: 'btn btn-sm btn-success' unless current_cart.empty?%>
 </h1>
-<% if not current_cart.empty? %>
-<table>
-<thead>
-    <tr>
-      <th>餐點</th>
-      <th>數量</th>
-      <th>小記</th>
-    </tr>
-  </table>
-  
-  <tbody>
-    <%current_cart.item.each do |cart_item|%>
-    <tr>
-      <td><% cart_item.item.name %> (<%= cart_item.item.price %> 元)</td>
-      <td><% cart_item.quantity %> </td>
-      <td><% cart_item.total %> </td>
-    </tr>
-    <% end %>
-  </body>
-  
-  <tfoot>
-    
-    <tr>
-      <td colspan="2"> 總計 </td>
-      <td><%= current_cart.total %> </td>
-    </tr>
-  </tfoot>
-</thead>
-<% end %>
+
+<%= render'cart'%>
 
 <%= link_to "繼續選購", root_path, class: 'btn btn-primary' %>
-<%= link_to "確認訂單", root_path, class: 'btn btn-danger' unless current_cart.empty? %>
+<%= link_to "結帳", checkout_cart_path, class: 'btn btn-danger' unless current_cart.empty? %>

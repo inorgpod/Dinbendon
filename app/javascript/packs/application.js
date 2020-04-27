@@ -10,9 +10,10 @@ require("@rails/activestorage").start()
 // app/javascript/channels/index.js 預設路徑
 
 require("styles")
+require("scripts")
 // require("scripts")
 
-
+console.log('application!!!!!')
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

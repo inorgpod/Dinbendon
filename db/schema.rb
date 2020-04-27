@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_032016) do
+ActiveRecord::Schema.define(version: 2020_04_27_044419) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -90,6 +90,27 @@ ActiveRecord::Schema.define(version: 2020_04_21_032016) do
     t.index ["deleted_at"], name: "index_items_on_deleted_at"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "quantity"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "order_num"
+    t.string "receiver"
+    t.string "phone"
+    t.string "address"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -106,4 +127,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_032016) do
   add_foreign_key "favorite_items", "users"
   add_foreign_key "histories", "events"
   add_foreign_key "histories", "users"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
 end
